@@ -9,7 +9,8 @@ let playlist = Array(lsTmp.length);
 for (let i = 0; i < lsTmp.length; i += 1) {
 
   let path = './temp/' + lsTmp[i];
-  let { playlist_index, id, title } = JSON.parse(readFileSync(path));
+  let data = JSON.parse(readFileSync(path));
+  let { playlist_index, id, title } = data;
   playlist[playlist_index - 1] = id;
 
 
