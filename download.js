@@ -15,8 +15,8 @@ for (let i = 0; i < lsTmp.length; i += 1) {
 
   let path = './temp/' + lsTmp[i];
   let data = JSON.parse(readFileSync(path));
-  let { playlistIndex, id, title } = data
-  playlist[playlistIndex - 1] = id; // playlists are 1 indexed
+  let { playlist_index, id, title } = data
+  playlist[playlist_index - 1] = id; // playlists are 1 indexed
 
   if (!lsEpisodes.includes(id)) {
     mkdirSync('./episodes/' + id);
@@ -32,5 +32,5 @@ for (let i = 0; i < lsTmp.length; i += 1) {
     writeFileSync('episodes/' + id + '/metadata.json', JSON.stringify(data));
   }
 }
-
+console.log(playlist);
 writeFileSync('episodes/list.json', JSON.stringify({ availableEpisodes: playlist }));
