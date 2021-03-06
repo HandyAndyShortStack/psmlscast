@@ -7,7 +7,7 @@ const {
 } = require('fs');
 
 const lsTmp = readdirSync('./temp');
-const lsAudio = readdirSync('./audio');
+const lsEpisodes = readdirSync('./episodes');
 
 let playlist = Array(lsTmp.length);
 
@@ -18,17 +18,17 @@ for (let i = 0; i < lsTmp.length; i += 1) {
   let { playlist_index, id, title } = data
   playlist[playlist_index - 1] = id; // playlists are 1 indexed
 
-  if (!lsAudio.includes(id)) {
-    mkdirSync('./audio/' + id);
+  if (!lsEpisodes.includes(id)) {
+    mkdirSync('./episodes/' + id);
     console.log('DOWNLOADING ' + title);
     execSync(
       'youtube-dl --extract-audio ' +
       id +
-      ' -o "./audio/%(id)s/episode.%(ext)s"' +
+      ' -o "./episodes/%(id)s/audio.%(ext)s"' +
       ' --audio-format m4a'
     );
     console.log('...FINISHED');
     console.log('copying metadata for ' + id);
-    writeFileSync('audio/' + id + '/metadata.json', JSON.stringify(data));
+    writeFileSync('episodes/' + id + '/metadata.json', JSON.stringify(data));
   }
 }
