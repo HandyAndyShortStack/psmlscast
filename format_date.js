@@ -31,9 +31,7 @@ function twoDigits(n) {
   return s;
 }
 
-const date = new Date();
-
-function formatDate() {
+function formatDate(date) {
   return days[date.getDay()] + ', ' +
     date.getDay() + ' ' +
     months[date.getMonth()] + ' ' +
@@ -44,4 +42,4 @@ function formatDate() {
     'EST';
 }
 
-module.exports = { formatDate };
+module.exports = { formatDate, twoDigits };

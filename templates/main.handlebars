@@ -26,4 +26,18 @@
     </image>
     <itunes:category text="Education"/>
   </channel>
+  {{#each episodes}}
+  <item>
+    <guid isPermaLink="false">psmls:podcast:episode/{{this.id}}</guid>
+    <title>{{this.title}}</title>
+    <pubDate>{{this.pubDate}}</pubDate>
+    <link>https://peoplesschool.org/</link>
+    <itunes:duration>{{this.itunesDuration}}</itunes:duration>
+    <itunes:author>PSMLS</itunes:author>
+    <itunes:explicit>no</itunes:explicit>
+    <itunes:summary>{{this.description}}</itunes:summary>
+    <itunes:subtitle>{{this.itunesSubtitle}}…</itunes:subtitle>
+    <description>{{this.description}}</description>
+  </item>
+  {{/each}}
 </rss>
