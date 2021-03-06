@@ -32,5 +32,5 @@ for (let i = 0; i < lsTmp.length; i += 1) {
     writeFileSync('episodes/' + id + '/metadata.json', JSON.stringify(data));
   }
 }
-console.log(playlist);
+
 writeFileSync('episodes/list.json', JSON.stringify({ availableEpisodes: playlist }));
