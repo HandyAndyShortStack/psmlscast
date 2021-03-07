@@ -38,6 +38,12 @@
     <itunes:summary>{{this.description}}</itunes:summary>
     <itunes:subtitle>{{this.itunesSubtitle}}…</itunes:subtitle>
     <description>{{this.description}}</description>
+    <enclosure
+      type="audio/mpeg"
+      url="https://podcast.psmls.org/episodes/{{this.id}}/audio.m4a"
+      length="{{this.lengthInBytes}}"
+    />
+    <itunes:image href="https://podcast.psmls.org/logo.jpg"/>
   </item>
   {{/each}}
 </rss>

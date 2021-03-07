@@ -1,4 +1,4 @@
-const { readFileSync, writeFileSync } = require('fs');
+const { readFileSync, writeFileSync, statSync } = require('fs');
 const { formatDate, twoDigits } = require('./format_date.js');
 const { compile } = require('handlebars');
 
@@ -9,9 +9,10 @@ const episodes = [];
 for (let i = 0; i < availableEpisodes.length; i += 1) {
 
   let id =  availableEpisodes[i];
-  let path = './episodes/' + id + '/metadata.json';
-  let episode = JSON.parse(readFileSync(path));
-  let { upload_date, duration, description } =  episode;
+  let metadataPath = './episodes/' + id + '/metadata.json';
+  let audioPath = './episodes/' + id + '/audio.m4a';
+  let episode = JSON.parse(readFileSync(metadataPath));
+  let { upload_date, duration, description } = episode;
 
   episode.pubDate = formatDate(new Date(
     upload_date.substr(0, 4) + '-' +
@@ -24,6 +25,8 @@ for (let i = 0; i < availableEpisodes.length; i += 1) {
     twoDigits((duration % 3600) % 60);
 
   episode.itunesSubtitle = description.substr(0, 49);
+
+  episode.lengthInBytes = statSync(audioPath).size;
 
   episodes.push(episode);
 }
