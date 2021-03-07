@@ -31,7 +31,7 @@ for (let i = 0; i < availableEpisodes.length; i += 1) {
   episodes.push(episode);
 }
 
-writeFileSync('./feed.rss', template({
+writeFileSync('./episodes/feed.rss', template({
   pubDate: formatDate(new Date()),
   episodes
 }));
